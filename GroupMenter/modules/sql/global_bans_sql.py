@@ -1,12 +1,12 @@
 import threading
 
 from GroupMenter.modules.sql import BASE, SESSION
-from sqlalchemy import Boolean, Column, Integer, String, UnicodeText
+from sqlalchemy import Boolean, Column, BigInt, String, UnicodeText
 
 
 class GloballyBannedUsers(BASE):
     __tablename__ = "gbans"
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(BigInt, primary_key=True)
     name = Column(UnicodeText, nullable=False)
     reason = Column(UnicodeText)
 
