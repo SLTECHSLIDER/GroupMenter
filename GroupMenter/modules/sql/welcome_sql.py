@@ -4,7 +4,7 @@ from typing import Union
 
 from GroupMenter.modules.helper_funcs.msg_types import Types
 from GroupMenter.modules.sql import BASE, SESSION
-from sqlalchemy import BigInteger, Boolean, Column, Integer, String, UnicodeText
+from sqlalchemy import BigInt, Boolean, Column, BigInt, String, UnicodeText
 
 DEFAULT_WELCOME = "Hey {first}, how are you?"
 DEFAULT_GOODBYE = "Nice knowing ya!"
@@ -235,12 +235,12 @@ class Welcome(BASE):
     custom_welcome = Column(
         UnicodeText, default=random.choice(DEFAULT_WELCOME_MESSAGES)
     )
-    welcome_type = Column(Integer, default=Types.TEXT.value)
+    welcome_type = Column(BigInt, default=Types.TEXT.value)
 
     custom_leave = Column(UnicodeText, default=random.choice(DEFAULT_GOODBYE_MESSAGES))
-    leave_type = Column(Integer, default=Types.TEXT.value)
+    leave_type = Column(BigInt, default=Types.TEXT.value)
 
-    clean_welcome = Column(BigInteger)
+    clean_welcome = Column(BigInt)
 
     def __init__(self, chat_id, should_welcome=True, should_goodbye=True):
         self.chat_id = chat_id
@@ -255,7 +255,7 @@ class Welcome(BASE):
 
 class WelcomeButtons(BASE):
     __tablename__ = "welcome_urls"
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(BigInt, primary_key=True, autoincrement=True)
     chat_id = Column(String(14), primary_key=True)
     name = Column(UnicodeText, nullable=False)
     url = Column(UnicodeText, nullable=False)
@@ -270,7 +270,7 @@ class WelcomeButtons(BASE):
 
 class GoodbyeButtons(BASE):
     __tablename__ = "leave_urls"
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(BigInt, primary_key=True, autoincrement=True)
     chat_id = Column(String(14), primary_key=True)
     name = Column(UnicodeText, nullable=False)
     url = Column(UnicodeText, nullable=False)
@@ -295,7 +295,7 @@ class WelcomeMute(BASE):
 
 class WelcomeMuteUsers(BASE):
     __tablename__ = "human_checks"
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(BigInt, primary_key=True)
     chat_id = Column(String(14), primary_key=True)
     human_check = Column(Boolean)
 
