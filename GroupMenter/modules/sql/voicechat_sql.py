@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, UnicodeText
+from sqlalchemy import Boolean, Column, BigInt, String, UnicodeText
 from GroupMenter.modules.sql import BASE, SESSION
 
 
